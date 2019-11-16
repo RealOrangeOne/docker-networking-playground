@@ -1,0 +1,26 @@
+entryPoints:
+  web:
+    address: ":80"
+    proxyProtocol:
+      trustedIPs:
+        - "127.0.0.1/8"
+      insecure: true
+  web-secure:
+    address: ":443"
+    proxyProtocol:
+      trustedIPs:
+        - "127.0.0.1/8"
+      insecure: true
+
+ping: {}
+
+providers:
+  docker:
+    endpoint: "unix:///var/run/docker.sock"
+    watch: true
+    exposedByDefault: false
+    network: linker
+
+api:
+  dashboard: true
+  insecure: true

@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  proj:
+    image: jwilder/whoami
+    expose:
+      - "8000"
+    networks:
+      - default
+      - linker
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.proj.rule=Host(`proj.domain.com`)"
+
+  redis:
+    image: "redis:alpine"
+
+networks:
+  linker:
+    external: true

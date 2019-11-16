@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+  dns:
+    image: programster/dnsmasq
+    expose:
+      - "53/udp"
+    ports:
+      - "53:53/udp"
+    networks:
+      - linker
+    volumes:
+      - "./dnsmasq:/etc/dnsmasq.conf"
+
+  traefik:
+    container_name: traefik
+    image: traefik:latest
+    ports:
+      - 80:80
+      - 8080:8080
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./traefik.yml:/etc/traefik/traefik.yml
+    networks:
+      - linker
+
+networks:
+  linker:
+    external: true
