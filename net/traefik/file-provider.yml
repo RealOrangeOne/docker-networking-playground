@@ -1,4 +1,18 @@
 http:
+  routers:
+    my-router:
+      entryPoints:
+        - "web-private"
+      rule: "Host(`proj.domain.com`)"
+      service: my-service
+      tls:
+        certResolver: CertificateResolver0
+
+  services:
+    my-service:
+      loadBalancer:
+        servers:
+          - url: "http://172.23.0.2/"
   middlewares:
     test-redirectscheme:
       redirectScheme:

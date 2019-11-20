@@ -11,6 +11,8 @@ entryPoints:
       trustedIPs:
         - "127.0.0.1/8"
       insecure: true
+  web-private:
+    address: ":4430"
 
 ping: {}
 
@@ -26,3 +28,12 @@ providers:
 api:
   dashboard: true
   insecure: true
+
+
+certificatesResolvers:
+  CertificateResolver0:
+    acme:
+      email: "domain@example.com"
+      storage: "/etc/traefik/acme.json"
+      httpChallenge:
+        entryPoint: web
