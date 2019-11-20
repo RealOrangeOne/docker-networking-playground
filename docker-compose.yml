@@ -2,9 +2,9 @@ version: "3"
 
 services:
   proj:
-    image: jwilder/whoami
+    image: containous/whoami
     expose:
-      - "8000"
+      - "80"
     networks:
       - default
       - linker
